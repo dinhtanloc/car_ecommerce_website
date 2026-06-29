@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Order Processing Workflow</title>
+  <desc id="desc">Detailed checkout workflow from React cart to Django order API, database transaction, inventory update, admin completion or cancellation, and dashboard analytics.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px Arial, Helvetica, sans-serif; fill: #475569; }
+      .lane-title { font: 700 14px Arial, Helvetica, sans-serif; fill: #334155; text-transform: uppercase; }
+      .lane-client { fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.2; }
+      .lane-api { fill: #f0fdf4; stroke: #bbf7d0; stroke-width: 1.2; }
+      .lane-db { fill: #fff7ed; stroke: #fed7aa; stroke-width: 1.2; }
+      .lane-admin { fill: #fdf2f8; stroke: #fbcfe8; stroke-width: 1.2; }
+      .node { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; filter: url(#shadow); }
+      .node-blue { fill: #ffffff; stroke: #93c5fd; stroke-width: 1.6; filter: url(#shadow); }
+      .node-green { fill: #ffffff; stroke: #86efac; stroke-width: 1.6; filter: url(#shadow); }
+      .node-orange { fill: #ffffff; stroke: #fdba74; stroke-width: 1.6; filter: url(#shadow); }
+      .node-red { fill: #fff1f2; stroke: #fb7185; stroke-width: 1.6; filter: url(#shadow); }
+      .decision { fill: #ffffff; stroke: #f59e0b; stroke-width: 2; filter: url(#shadow); }
+      .heading { font: 700 16px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .body { font: 400 12.5px Arial, Helvetica, sans-serif; fill: #334155; }
+      .tiny { font: 400 11px Arial, Helvetica, sans-serif; fill: #64748b; }
+      .label { font: 700 11px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .line { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .line-blue { stroke: #2563eb; stroke-width: 2.4; fill: none; marker-end: url(#arrowBlue); }
+      .line-red { stroke: #dc2626; stroke-width: 2.2; fill: none; marker-end: url(#arrowRed); }
+      .line-dashed { stroke: #64748b; stroke-width: 1.8; fill: none; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+      .transaction { fill: none; stroke: #16a34a; stroke-width: 2; stroke-dasharray: 10 8; }
+      .transaction-label { font: 700 13px Arial, Helvetica, sans-serif; fill: #15803d; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1050"/>
+  <text x="58" y="66" class="title">Order Processing Workflow</text>
+  <text x="58" y="96" class="subtitle">The checkout path joins browser cart state, JWT authentication, Django serializers, transaction.atomic, inventory checks, and staff order lifecycle actions.</text>
+
+  <rect x="40" y="142" width="330" height="842" rx="18" class="lane-client"/>
+  <rect x="410" y="142" width="430" height="842" rx="18" class="lane-api"/>
+  <rect x="880" y="142" width="330" height="842" rx="18" class="lane-db"/>
+  <rect x="1250" y="142" width="310" height="842" rx="18" class="lane-admin"/>
+
+  <text x="70" y="176" class="lane-title">React client browser</text>
+  <text x="440" y="176" class="lane-title">Django REST order API</text>
+  <text x="910" y="176" class="lane-title">PostgreSQL models</text>
+  <text x="1280" y="176" class="lane-title">Staff/admin operations</text>
+
+  <g id="client-flow">
+    <rect x="78" y="212" width="254" height="76" rx="10" class="node-blue"/>
+    <text x="104" y="240" class="heading">Browse products</text>
+    <text x="104" y="264" class="body">/cars, /cars/:slug, color switch</text>
+
+    <rect x="78" y="324" width="254" height="86" rx="10" class="node-blue"/>
+    <text x="104" y="352" class="heading">Add to cart</text>
+    <text x="104" y="376" class="body">CartContext stores cartItems</text>
+    <text x="104" y="396" class="body">localStorage persists cart</text>
+
+    <rect x="78" y="446" width="254" height="96" rx="10" class="node-blue"/>
+    <text x="104" y="474" class="heading">Authenticate</text>
+    <text x="104" y="498" class="body">POST /accounts/token</text>
+    <text x="104" y="518" class="body">Save access and refresh tokens</text>
+
+    <rect x="78" y="578" width="254" height="96" rx="10" class="node-blue"/>
+    <text x="104" y="606" class="heading">Checkout submit</text>
+    <text x="104" y="630" class="body">POST /orders/create-order/</text>
+    <text x="104" y="650" class="body">Payload: order + items[]</text>
+
+    <rect x="78" y="822" width="254" height="86" rx="10" class="node-blue"/>
+    <text x="104" y="850" class="heading">Confirmation/history</text>
+    <text x="104" y="874" class="body">GET /orders/{order_id}/items</text>
+    <text x="104" y="894" class="body">GET /orders/order-history</text>
+  </g>
+
+  <g id="api-flow">
+    <rect x="454" y="438" width="326" height="104" rx="10" class="node-green"/>
+    <text x="484" y="468" class="heading">SimpleJWT token endpoint</text>
+    <text x="484" y="492" class="body">MyTokenObtainPairSerializer</text>
+    <text x="484" y="514" class="body">Adds profile data into JWT claims</text>
+
+    <rect x="454" y="578" width="326" height="92" rx="10" class="node-green"/>
+    <text x="484" y="608" class="heading">create_order view</text>
+    <text x="484" y="632" class="body">Requires IsAuthenticated</text>
+    <text x="484" y="652" class="body">Reads request.user, order, items</text>
+
+    <rect x="454" y="706" width="326" height="92" rx="10" class="node-green"/>
+    <text x="484" y="736" class="heading">Serializer validation</text>
+    <text x="484" y="760" class="body">OrdersSerializer for header</text>
+    <text x="484" y="780" class="body">OrdersItemSerializer per item</text>
+
+    <rect x="454" y="834" width="326" height="96" rx="10" class="node-green"/>
+    <text x="484" y="864" class="heading">Response</text>
+    <text x="484" y="888" class="body">201 with serialized order on success</text>
+    <text x="484" y="908" class="body">400 on invalid item or stock failure</text>
+  </g>
+
+  <g id="db-flow">
+    <rect x="920" y="438" width="250" height="88" rx="10" class="node-orange"/>
+    <text x="948" y="468" class="heading">accounts.User</text>
+    <text x="948" y="492" class="body">Authenticated from JWT user_id</text>
+    <text x="948" y="512" class="body">Owns the new order</text>
+
+    <rect x="920" y="560" width="250" height="86" rx="10" class="node-orange"/>
+    <text x="948" y="590" class="heading">Create Orders row</text>
+    <text x="948" y="614" class="body">shipping_deadline = now + 21d</text>
+    <text x="948" y="634" class="body">initial total_price = 0</text>
+
+    <polygon points="1045,680 1170,750 1045,820 920,750" class="decision"/>
+    <text x="994" y="736" class="heading">Enough</text>
+    <text x="995" y="758" class="heading">stock?</text>
+    <text x="980" y="780" class="body">quantity &lt;= Product.quantity</text>
+
+    <rect x="920" y="852" width="250" height="92" rx="10" class="node-orange"/>
+    <text x="948" y="882" class="heading">Persist item updates</text>
+    <text x="948" y="906" class="body">decrement Product.quantity</text>
+    <text x="948" y="926" class="body">save OrdersItem total_price</text>
+  </g>
+
+  <g id="admin-flow">
+    <rect x="1288" y="260" width="236" height="90" rx="10" class="node"/>
+    <text x="1316" y="290" class="heading">Order list</text>
+    <text x="1316" y="314" class="body">/orders/admin/orders</text>
+    <text x="1316" y="334" class="body">IsStaffUser required</text>
+
+    <rect x="1288" y="394" width="236" height="110" rx="10" class="node"/>
+    <text x="1316" y="424" class="heading">Staff action</text>
+    <text x="1316" y="448" class="body">POST /complete sets completed</text>
+    <text x="1316" y="468" class="body">POST /cancel sets cancelled</text>
+    <text x="1316" y="488" class="body">Only pending orders change</text>
+
+    <rect x="1288" y="548" width="236" height="96" rx="10" class="node"/>
+    <text x="1316" y="578" class="heading">Cancel side effect</text>
+    <text x="1316" y="602" class="body">For each OrdersItem</text>
+    <text x="1316" y="622" class="body">restore Product.quantity</text>
+
+    <rect x="1288" y="708" width="236" height="138" rx="10" class="node"/>
+    <text x="1316" y="738" class="heading">Dashboard analytics</text>
+    <text x="1316" y="762" class="body">Revenue and status totals</text>
+    <text x="1316" y="782" class="body">Brand sales and inventory</text>
+    <text x="1316" y="802" class="body">Payment and time series</text>
+    <text x="1316" y="822" class="body">Excel export</text>
+  </g>
+
+  <rect x="430" y="548" width="770" height="422" rx="16" class="transaction"/>
+  <text x="458" y="570" class="transaction-label">transaction.atomic boundary for cart item processing</text>
+
+  <path class="line" d="M205 288 V324"/>
+  <path class="line" d="M205 410 V446"/>
+  <path class="line" d="M205 542 V578"/>
+  <path class="line-blue" d="M332 494 H454"/>
+  <text x="354" y="478" class="label">login request</text>
+  <path class="line-blue" d="M780 490 H920"/>
+  <text x="804" y="474" class="label">token claims use profile</text>
+
+  <path class="line-blue" d="M332 626 H454"/>
+  <text x="354" y="610" class="label">Bearer access token</text>
+  <path class="line" d="M617 670 V706"/>
+  <path class="line" d="M780 624 H920"/>
+  <text x="814" y="608" class="label">save header row</text>
+  <path class="line" d="M780 752 H920"/>
+  <text x="812" y="736" class="label">loop through items</text>
+  <path class="line" d="M1045 646 V680"/>
+
+  <path class="line" d="M1045 820 V852"/>
+  <text x="1080" y="840" class="label">yes</text>
+  <path class="line-red" d="M920 750 C850 750, 840 882, 780 882"/>
+  <text x="835" y="806" class="label" fill="#dc2626">no</text>
+  <text x="804" y="834" class="tiny">400 insufficient stock or missing product</text>
+
+  <path class="line" d="M920 898 H780"/>
+  <text x="812" y="922" class="label">sum item totals</text>
+  <path class="line-blue" d="M454 882 H332"/>
+  <text x="348" y="862" class="label">201 or 400</text>
+  <path class="line" d="M205 674 V822"/>
+
+  <path class="line-dashed" d="M1170 604 C1240 604, 1248 306, 1288 306"/>
+  <text x="1212" y="448" class="label">staff reads orders</text>
+  <path class="line" d="M1406 350 V394"/>
+  <path class="line" d="M1406 504 V548"/>
+  <path class="line-dashed" d="M1288 596 C1224 596, 1226 898, 1170 898"/>
+  <text x="1192" y="714" class="label">cancel restores inventory</text>
+  <path class="line-dashed" d="M1170 898 C1248 898, 1242 777, 1288 777"/>
+  <text x="1202" y="860" class="label">aggregate queries</text>
+
+  <g transform="translate(78 946)">
+    <text x="0" y="0" class="tiny">Stock and price are resolved server-side. The frontend sends product ids, colors, and quantities; OrdersItem.save copies Product.price and computes each line total.</text>
+  </g>
+</svg>

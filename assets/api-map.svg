@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Car Retailer API Map</title>
+  <desc id="desc">Detailed API endpoint map grouped by Django app, including public, JWT-protected, staff-only, admin, media, and external OpenAI integration paths.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px Arial, Helvetica, sans-serif; fill: #475569; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; filter: url(#shadow); }
+      .panel-head { fill: #0f172a; }
+      .head-blue { fill: #1d4ed8; }
+      .head-green { fill: #15803d; }
+      .head-orange { fill: #c2410c; }
+      .head-purple { fill: #7e22ce; }
+      .head-teal { fill: #0f766e; }
+      .panel-title { font: 700 18px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .panel-sub { font: 400 11px Arial, Helvetica, sans-serif; fill: #e2e8f0; }
+      .endpoint { font: 400 12px Arial, Helvetica, sans-serif; fill: #334155; }
+      .endpoint-strong { font: 700 12px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .small-title { font: 700 14px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .small { font: 400 12px Arial, Helvetica, sans-serif; fill: #475569; }
+      .method-get { fill: #dbeafe; stroke: #93c5fd; }
+      .method-post { fill: #dcfce7; stroke: #86efac; }
+      .method-patch { fill: #fef3c7; stroke: #fbbf24; }
+      .method-crud { fill: #ede9fe; stroke: #c4b5fd; }
+      .method-delete { fill: #fee2e2; stroke: #fca5a5; }
+      .method-text { font: 700 10px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .badge-public { fill: #dcfce7; stroke: #86efac; }
+      .badge-jwt { fill: #dbeafe; stroke: #93c5fd; }
+      .badge-staff { fill: #ffedd5; stroke: #fdba74; }
+      .badge-admin { fill: #f3e8ff; stroke: #d8b4fe; }
+      .badge-external { fill: #fce7f3; stroke: #f9a8d4; }
+      .badge-text { font: 700 11px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .line { stroke: #334155; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .line-dashed { stroke: #64748b; stroke-width: 1.8; fill: none; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1200"/>
+  <text x="58" y="66" class="title">API Route Map</text>
+  <text x="58" y="96" class="subtitle">Django URLConf exposes grouped REST endpoints for authentication, product catalog, checkout, analytics, content, media, admin, and chatbot features.</text>
+
+  <g transform="translate(990 42)">
+    <rect x="0" y="0" width="92" height="26" rx="8" class="badge-public"/>
+    <text x="17" y="18" class="badge-text">Public</text>
+    <rect x="106" y="0" width="112" height="26" rx="8" class="badge-jwt"/>
+    <text x="124" y="18" class="badge-text">JWT auth</text>
+    <rect x="232" y="0" width="104" height="26" rx="8" class="badge-staff"/>
+    <text x="254" y="18" class="badge-text">Staff</text>
+    <rect x="350" y="0" width="98" height="26" rx="8" class="badge-admin"/>
+    <text x="374" y="18" class="badge-text">Admin</text>
+    <rect x="462" y="0" width="104" height="26" rx="8" class="badge-external"/>
+    <text x="478" y="18" class="badge-text">External</text>
+  </g>
+
+  <g id="root-router">
+    <rect x="475" y="132" width="650" height="86" rx="12" class="panel"/>
+    <rect x="475" y="132" width="650" height="42" rx="12" class="panel-head"/>
+    <path d="M475 164 H1125" stroke="#0f172a" stroke-width="18"/>
+    <text x="505" y="160" class="panel-title">backend/urls.py root router</text>
+    <text x="505" y="198" class="endpoint">/admin /app /accounts /categories /orders /chatbot /blogs /ckeditor /ckeditor5 /media /static</text>
+  </g>
+
+  <g id="frontend-callers">
+    <rect x="58" y="132" width="350" height="86" rx="12" class="panel"/>
+    <rect x="58" y="132" width="350" height="42" rx="12" class="head-teal"/>
+    <path d="M58 164 H408" stroke="#0f766e" stroke-width="18"/>
+    <text x="88" y="160" class="panel-title">Frontend callers</text>
+    <text x="88" y="196" class="endpoint">React client pages, React admin pages, AuthContext, useAxios, CartContext</text>
+  </g>
+
+  <g id="runtime">
+    <rect x="1190" y="132" width="350" height="86" rx="12" class="panel"/>
+    <rect x="1190" y="132" width="350" height="42" rx="12" class="head-purple"/>
+    <path d="M1190 164 H1540" stroke="#7e22ce" stroke-width="18"/>
+    <text x="1220" y="160" class="panel-title">Runtime config</text>
+    <text x="1220" y="196" class="endpoint">VITE_DOMAIN_BACKEND, DB_* env vars, DJANGO_keys, AI_key, CHATBOT_model</text>
+  </g>
+
+  <path class="line" d="M408 175 H475"/>
+  <path class="line-dashed" d="M1125 175 H1190"/>
+
+  <g id="accounts">
+    <rect x="58" y="270" width="350" height="370" rx="12" class="panel"/>
+    <rect x="58" y="270" width="350" height="58" rx="12" class="head-blue"/>
+    <path d="M58 316 H408" stroke="#1d4ed8" stroke-width="24"/>
+    <text x="88" y="301" class="panel-title">accounts.urls</text>
+    <text x="88" y="320" class="panel-sub">Authentication, registration, profile, staff checks</text>
+
+    <rect x="88" y="356" width="44" height="20" rx="5" class="method-post"/>
+    <text x="96" y="370" class="method-text">POST</text>
+    <text x="144" y="371" class="endpoint-strong">/accounts/token/</text>
+    <text x="282" y="371" class="endpoint">Public JWT login</text>
+
+    <rect x="88" y="390" width="44" height="20" rx="5" class="method-post"/>
+    <text x="96" y="404" class="method-text">POST</text>
+    <text x="144" y="405" class="endpoint-strong">/accounts/token/refresh/</text>
+    <text x="306" y="405" class="endpoint">Public</text>
+
+    <rect x="88" y="424" width="44" height="20" rx="5" class="method-post"/>
+    <text x="96" y="438" class="method-text">POST</text>
+    <text x="144" y="439" class="endpoint-strong">/accounts/register/</text>
+    <text x="286" y="439" class="endpoint">Public</text>
+
+    <rect x="88" y="458" width="44" height="20" rx="5" class="method-get"/>
+    <text x="100" y="472" class="method-text">GET</text>
+    <rect x="136" y="458" width="52" height="20" rx="5" class="method-patch"/>
+    <text x="144" y="472" class="method-text">PATCH</text>
+    <text x="200" y="473" class="endpoint-strong">/accounts/profile/</text>
+    <text x="326" y="473" class="endpoint">JWT</text>
+
+    <rect x="88" y="492" width="44" height="20" rx="5" class="method-get"/>
+    <text x="100" y="506" class="method-text">GET</text>
+    <text x="144" y="507" class="endpoint-strong">/accounts/staff/</text>
+    <text x="268" y="507" class="endpoint">JWT staff status</text>
+
+    <rect x="88" y="526" width="44" height="20" rx="5" class="method-get"/>
+    <text x="100" y="540" class="method-text">GET</text>
+    <text x="144" y="541" class="endpoint-strong">/accounts/admin/staff-list/</text>
+    <text x="324" y="541" class="endpoint">Staff</text>
+
+    <rect x="88" y="570" width="292" height="42" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="108" y="594" class="endpoint">JWT serializer adds profile fields to token claims.</text>
+  </g>
+
+  <g id="categories">
+    <rect x="438" y="270" width="350" height="502" rx="12" class="panel"/>
+    <rect x="438" y="270" width="350" height="58" rx="12" class="head-orange"/>
+    <path d="M438 316 H788" stroke="#c2410c" stroke-width="24"/>
+    <text x="468" y="301" class="panel-title">categories.urls</text>
+    <text x="468" y="320" class="panel-sub">Products, catalog actions, staff product admin, charts</text>
+
+    <rect x="468" y="356" width="44" height="20" rx="5" class="method-get"/>
+    <text x="480" y="370" class="method-text">GET</text>
+    <text x="524" y="371" class="endpoint-strong">/categories/</text>
+    <text x="622" y="371" class="endpoint">Public paginated list</text>
+
+    <rect x="468" y="390" width="44" height="20" rx="5" class="method-get"/>
+    <text x="480" y="404" class="method-text">GET</text>
+    <text x="524" y="405" class="endpoint-strong">/categories/{id}/</text>
+    <text x="654" y="405" class="endpoint">Public detail</text>
+
+    <rect x="468" y="424" width="44" height="20" rx="5" class="method-post"/>
+    <text x="476" y="438" class="method-text">POST</text>
+    <text x="524" y="439" class="endpoint-strong">/{id}/change-color/</text>
+    <text x="676" y="439" class="endpoint">Public image URL</text>
+
+    <rect x="468" y="458" width="44" height="20" rx="5" class="method-post"/>
+    <text x="476" y="472" class="method-text">POST</text>
+    <text x="524" y="473" class="endpoint-strong">/{id}/like/</text>
+    <text x="622" y="473" class="endpoint">JWT increments rating</text>
+
+    <rect x="468" y="492" width="44" height="20" rx="5" class="method-post"/>
+    <text x="476" y="506" class="method-text">POST</text>
+    <text x="524" y="507" class="endpoint-strong">/find-car/</text>
+    <text x="612" y="507" class="endpoint">Public CLIP search</text>
+
+    <rect x="468" y="536" width="48" height="20" rx="5" class="method-crud"/>
+    <text x="477" y="550" class="method-text">CRUD</text>
+    <text x="528" y="551" class="endpoint-strong">/admin/products/</text>
+    <text x="664" y="551" class="endpoint">Staff only</text>
+
+    <text x="468" y="588" class="small-title">Staff product analytics</text>
+    <text x="468" y="616" class="endpoint">GET /admin/products/top-selling/</text>
+    <text x="468" y="640" class="endpoint">GET /admin/products/inventory-quantity-stats/</text>
+    <text x="468" y="664" class="endpoint">GET /admin/products/cancelled-orders-product-quantity/</text>
+    <text x="468" y="688" class="endpoint">GET /admin/products/check_inventory/</text>
+    <text x="468" y="712" class="endpoint">GET /admin/pieData/</text>
+    <text x="468" y="744" class="small">Seed data loads from categories/populate_data.py when empty.</text>
+  </g>
+
+  <g id="orders">
+    <rect x="818" y="270" width="350" height="628" rx="12" class="panel"/>
+    <rect x="818" y="270" width="350" height="58" rx="12" class="panel-head"/>
+    <path d="M818 316 H1168" stroke="#0f172a" stroke-width="24"/>
+    <text x="848" y="301" class="panel-title">order.urls</text>
+    <text x="848" y="320" class="panel-sub">Customer checkout, order history, staff lifecycle, analytics</text>
+
+    <rect x="848" y="356" width="44" height="20" rx="5" class="method-post"/>
+    <text x="856" y="370" class="method-text">POST</text>
+    <text x="904" y="371" class="endpoint-strong">/orders/create-order/</text>
+    <text x="1058" y="371" class="endpoint">JWT</text>
+
+    <rect x="848" y="390" width="44" height="20" rx="5" class="method-get"/>
+    <text x="860" y="404" class="method-text">GET</text>
+    <text x="904" y="405" class="endpoint-strong">/{user_id}/orders-history/</text>
+    <text x="1094" y="405" class="endpoint">JWT</text>
+
+    <rect x="848" y="424" width="44" height="20" rx="5" class="method-get"/>
+    <text x="860" y="438" class="method-text">GET</text>
+    <text x="904" y="439" class="endpoint-strong">/{order_id}/items/</text>
+    <text x="1042" y="439" class="endpoint">JWT</text>
+
+    <rect x="848" y="458" width="44" height="20" rx="5" class="method-get"/>
+    <text x="860" y="472" class="method-text">GET</text>
+    <text x="904" y="473" class="endpoint-strong">/order-history/</text>
+    <text x="1026" y="473" class="endpoint">JWT viewset</text>
+
+    <rect x="848" y="502" width="48" height="20" rx="5" class="method-crud"/>
+    <text x="857" y="516" class="method-text">CRUD</text>
+    <text x="908" y="517" class="endpoint-strong">/admin/orders/</text>
+    <text x="1026" y="517" class="endpoint">Staff</text>
+
+    <rect x="848" y="536" width="44" height="20" rx="5" class="method-post"/>
+    <text x="856" y="550" class="method-text">POST</text>
+    <text x="904" y="551" class="endpoint-strong">/admin/orders/{id}/cancel/</text>
+    <text x="1102" y="551" class="endpoint">Staff</text>
+
+    <rect x="848" y="570" width="44" height="20" rx="5" class="method-post"/>
+    <text x="856" y="584" class="method-text">POST</text>
+    <text x="904" y="585" class="endpoint-strong">/admin/orders/{id}/complete/</text>
+    <text x="1116" y="585" class="endpoint">Staff</text>
+
+    <rect x="848" y="604" width="44" height="20" rx="5" class="method-get"/>
+    <text x="860" y="618" class="method-text">GET</text>
+    <text x="904" y="619" class="endpoint-strong">/download-excel/</text>
+    <text x="1034" y="619" class="endpoint">exports orders</text>
+
+    <text x="848" y="660" class="small-title">Dashboard and analytics routes</text>
+    <text x="848" y="688" class="endpoint">GET /admin/orders/first-ten-orders/</text>
+    <text x="848" y="712" class="endpoint">GET /admin/orders/total-order/</text>
+    <text x="848" y="736" class="endpoint">GET /admin/orders/statistics/</text>
+    <text x="848" y="760" class="endpoint">GET /admin/orders/time-series/</text>
+    <text x="848" y="784" class="endpoint">GET /admin/orders/recent-car-orders/ public action</text>
+    <text x="848" y="808" class="endpoint">GET /admin/orders/product-stats/</text>
+    <text x="848" y="832" class="endpoint">GET /admin/orders/order-status-total/</text>
+    <text x="848" y="856" class="endpoint">GET /admin/monthly-brand-data, /barH-data, /time-series</text>
+    <text x="848" y="880" class="endpoint">GET /admin/sale-time-series, /status-time-series, /bar, /payment-bar, /pieData</text>
+  </g>
+
+  <g id="content-ai">
+    <rect x="1198" y="270" width="342" height="502" rx="12" class="panel"/>
+    <rect x="1198" y="270" width="342" height="58" rx="12" class="head-green"/>
+    <path d="M1198 316 H1540" stroke="#15803d" stroke-width="24"/>
+    <text x="1228" y="301" class="panel-title">content, AI, admin, media</text>
+    <text x="1228" y="320" class="panel-sub">Blog content, chatbot, Django admin, uploads</text>
+
+    <rect x="1228" y="356" width="48" height="20" rx="5" class="method-crud"/>
+    <text x="1237" y="370" class="method-text">CRUD</text>
+    <text x="1288" y="371" class="endpoint-strong">/blogs/</text>
+    <text x="1360" y="371" class="endpoint">BlogViewSet</text>
+
+    <rect x="1228" y="390" width="44" height="20" rx="5" class="method-post"/>
+    <text x="1236" y="404" class="method-text">POST</text>
+    <text x="1284" y="405" class="endpoint-strong">/chatbot/</text>
+    <text x="1374" y="405" class="endpoint">OpenAI Chat API</text>
+
+    <rect x="1228" y="424" width="44" height="20" rx="5" class="method-get"/>
+    <text x="1240" y="438" class="method-text">GET</text>
+    <text x="1284" y="439" class="endpoint-strong">/admin/</text>
+    <text x="1354" y="439" class="endpoint">Django Jazzmin admin</text>
+
+    <rect x="1228" y="458" width="44" height="20" rx="5" class="method-get"/>
+    <text x="1240" y="472" class="method-text">GET</text>
+    <text x="1284" y="473" class="endpoint-strong">/media/*</text>
+    <text x="1358" y="473" class="endpoint">Django static serving in dev</text>
+
+    <rect x="1228" y="492" width="48" height="20" rx="5" class="method-crud"/>
+    <text x="1237" y="506" class="method-text">CRUD</text>
+    <text x="1288" y="507" class="endpoint-strong">/ckeditor/ and /ckeditor5/</text>
+
+    <rect x="1228" y="548" width="282" height="88" rx="8" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="1248" y="574" class="small-title">Media location</text>
+    <text x="1248" y="600" class="small">MEDIA_ROOT = frontend/public/media</text>
+    <text x="1248" y="622" class="small">Product, blog, and profile images resolve from here.</text>
+
+    <rect x="1228" y="662" width="282" height="74" rx="8" fill="#fdf2f8" stroke="#fbcfe8"/>
+    <text x="1248" y="688" class="small-title">External integration</text>
+    <text x="1248" y="714" class="small">ChatAPIView calls OpenAI with AI_key and CHATBOT_model.</text>
+  </g>
+
+  <g id="auth-rules">
+    <rect x="58" y="824" width="730" height="238" rx="12" class="panel"/>
+    <rect x="58" y="824" width="730" height="52" rx="12" class="head-teal"/>
+    <path d="M58 864 H788" stroke="#0f766e" stroke-width="24"/>
+    <text x="88" y="856" class="panel-title">Permission model</text>
+    <text x="88" y="904" class="endpoint">Public routes serve browsing, registration, token issuing, product list/detail, blog content, chatbot, image color preview, and CLIP product search.</text>
+    <text x="88" y="936" class="endpoint">JWT routes require rest_framework_simplejwt.authentication.JWTAuthentication and use Authorization: Bearer access_token.</text>
+    <text x="88" y="968" class="endpoint">Staff routes combine IsAuthenticated with accounts.permissions.IsStaffUser; they power product management, order lifecycle, staff list, and analytics.</text>
+    <text x="88" y="1000" class="endpoint">Django admin is separate from React admin and is intended for superusers or staff with Django model permissions.</text>
+    <text x="88" y="1032" class="endpoint">CORS allows the Vite dev server at localhost:5173 and 127.0.0.1:5173.</text>
+  </g>
+
+  <g id="data-impact">
+    <rect x="818" y="936" width="722" height="126" rx="12" class="panel"/>
+    <rect x="818" y="936" width="722" height="52" rx="12" class="head-purple"/>
+    <path d="M818 976 H1540" stroke="#7e22ce" stroke-width="24"/>
+    <text x="848" y="968" class="panel-title">Database impact by route family</text>
+    <text x="848" y="1016" class="endpoint">accounts writes User and Profile; Product routes read/write Product; order routes write Orders and OrdersItem then mutate Product.quantity.</text>
+    <text x="848" y="1048" class="endpoint">Analytics endpoints aggregate Orders, OrdersItem, and Product using Count, Sum, ExtractMonth, TruncDate, and values annotations.</text>
+  </g>
+
+  <path class="line" d="M650 218 V270"/>
+  <path class="line" d="M794 218 C780 252, 786 252, 788 300"/>
+  <path class="line" d="M806 218 C820 252, 818 252, 818 300"/>
+  <path class="line" d="M945 218 C1070 250, 1160 254, 1198 300"/>
+</svg>

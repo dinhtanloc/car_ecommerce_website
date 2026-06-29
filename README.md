@@ -1,6 +1,22 @@
 # Web Project: Car Retailer 
 ![The project's web diagram and accompanying technologies.](project.png)
 This project is a fullstack web product primarily programmed in Python and JavaScript. The project consists of two parts: the frontend is developed using React + Vite.js, and the backend is developed using the Django framework. Some additional technologies are clearly displayed in the diagram as described.
+
+## Architecture assets
+The detailed architecture diagrams are stored in the root `assets/` directory. They document the current React, Django REST Framework, PostgreSQL, media, JWT, chatbot, product, order, and analytics structure.
+
+### System architecture
+![Car Retailer system architecture](assets/system-architecture.svg)
+
+### Database ERD
+![Car Retailer database ERD](assets/database-erd.svg)
+
+### Order processing workflow
+![Car Retailer order processing workflow](assets/order-flow.svg)
+
+### API route map
+![Car Retailer API route map](assets/api-map.svg)
+
 ## install
 ### Clone repo into your space
 ```

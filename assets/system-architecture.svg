@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1150" viewBox="0 0 1600 1150" role="img" aria-labelledby="title desc">
+  <title id="title">Car Retailer System Architecture</title>
+  <desc id="desc">Detailed architecture diagram for the React, Django REST, PostgreSQL, media, JWT, chatbot, and analytics components.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#15803d"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px Arial, Helvetica, sans-serif; fill: #475569; }
+      .layer-title { font: 700 15px Arial, Helvetica, sans-serif; fill: #334155; text-transform: uppercase; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; filter: url(#shadow); }
+      .card-soft { fill: #ffffff; stroke: #dbe4ee; stroke-width: 1.2; }
+      .heading { font: 700 18px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .small-heading { font: 700 14px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .body { font: 400 13px Arial, Helvetica, sans-serif; fill: #334155; }
+      .tiny { font: 400 11px Arial, Helvetica, sans-serif; fill: #64748b; }
+      .label { font: 700 12px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .badge { font: 700 11px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .line { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .line-blue { stroke: #2563eb; stroke-width: 2.5; fill: none; marker-end: url(#arrowBlue); }
+      .line-green { stroke: #15803d; stroke-width: 2.5; fill: none; marker-end: url(#arrowGreen); }
+      .line-dashed { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+      .lane { fill: #eef2ff; stroke: #c7d2fe; stroke-width: 1.2; }
+      .lane2 { fill: #ecfeff; stroke: #a5f3fc; stroke-width: 1.2; }
+      .lane3 { fill: #f0fdf4; stroke: #bbf7d0; stroke-width: 1.2; }
+      .lane4 { fill: #fff7ed; stroke: #fed7aa; stroke-width: 1.2; }
+      .chip-public { fill: #dcfce7; stroke: #86efac; }
+      .chip-protected { fill: #dbeafe; stroke: #93c5fd; }
+      .chip-staff { fill: #ffedd5; stroke: #fdba74; }
+      .chip-external { fill: #f5d0fe; stroke: #e879f9; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1150"/>
+  <rect x="0" y="0" width="1600" height="118" fill="#0f172a"/>
+  <text x="56" y="54" class="title" fill="#ffffff">Car Retailer System Architecture</text>
+  <text x="56" y="84" class="subtitle" fill="#cbd5e1">React + Vite storefront and staff dashboard backed by Django REST Framework, JWT, PostgreSQL, media storage, OpenAI chatbot, and CLIP image search.</text>
+
+  <g transform="translate(1100 34)">
+    <rect x="0" y="0" width="108" height="26" rx="8" class="chip-public"/>
+    <text x="15" y="18" class="badge">Public</text>
+    <rect x="122" y="0" width="120" height="26" rx="8" class="chip-protected"/>
+    <text x="137" y="18" class="badge">JWT required</text>
+    <rect x="258" y="0" width="110" height="26" rx="8" class="chip-staff"/>
+    <text x="280" y="18" class="badge">Staff only</text>
+    <rect x="384" y="0" width="114" height="26" rx="8" class="chip-external"/>
+    <text x="405" y="18" class="badge">External</text>
+  </g>
+
+  <text x="58" y="160" class="layer-title">Users and entry points</text>
+  <text x="432" y="160" class="layer-title">Frontend application</text>
+  <text x="838" y="160" class="layer-title">Django backend</text>
+  <text x="1268" y="160" class="layer-title">Data and integrations</text>
+
+  <rect x="40" y="180" width="320" height="850" rx="18" class="lane"/>
+  <rect x="410" y="180" width="350" height="850" rx="18" class="lane2"/>
+  <rect x="815" y="180" width="390" height="850" rx="18" class="lane3"/>
+  <rect x="1260" y="180" width="300" height="850" rx="18" class="lane4"/>
+
+  <g id="users">
+    <rect x="78" y="220" width="244" height="114" rx="10" class="card"/>
+    <text x="104" y="252" class="heading">Guest</text>
+    <text x="104" y="280" class="body">Browse home, cars, blogs</text>
+    <text x="104" y="304" class="body">Can ask chatbot questions</text>
+
+    <rect x="78" y="370" width="244" height="136" rx="10" class="card"/>
+    <text x="104" y="402" class="heading">Customer</text>
+    <text x="104" y="430" class="body">JWT login/register</text>
+    <text x="104" y="454" class="body">Cart, checkout, order history</text>
+    <text x="104" y="478" class="body">Profile and password updates</text>
+
+    <rect x="78" y="542" width="244" height="140" rx="10" class="card"/>
+    <text x="104" y="574" class="heading">Staff user</text>
+    <text x="104" y="602" class="body">React admin dashboard</text>
+    <text x="104" y="626" class="body">Manage products and orders</text>
+    <text x="104" y="650" class="body">View charts and export Excel</text>
+
+    <rect x="78" y="718" width="244" height="140" rx="10" class="card"/>
+    <text x="104" y="750" class="heading">Super admin</text>
+    <text x="104" y="778" class="body">Django admin at /admin</text>
+    <text x="104" y="802" class="body">Assign staff permissions</text>
+    <text x="104" y="826" class="body">Direct database management</text>
+  </g>
+
+  <g id="frontend">
+    <rect x="446" y="216" width="280" height="150" rx="10" class="card"/>
+    <text x="474" y="248" class="heading">React Client App</text>
+    <text x="474" y="276" class="body">Routes: /home, /cars, /blogs</text>
+    <text x="474" y="300" class="body">/profile, /confirmation</text>
+    <text x="474" y="324" class="body">Components: cart, chatbot, UI</text>
+
+    <rect x="446" y="404" width="280" height="150" rx="10" class="card"/>
+    <text x="474" y="436" class="heading">React Staff Admin</text>
+    <text x="474" y="464" class="body">Routes: /admin/products</text>
+    <text x="474" y="488" class="body">/admin/orders, dashboards</text>
+    <text x="474" y="512" class="body">Nivo charts and data grids</text>
+
+    <rect x="446" y="592" width="280" height="150" rx="10" class="card"/>
+    <text x="474" y="624" class="heading">Browser state</text>
+    <text x="474" y="652" class="body">localStorage authTokens</text>
+    <text x="474" y="676" class="body">localStorage cartItems</text>
+    <text x="474" y="700" class="body">AuthContext and CartContext</text>
+
+    <rect x="446" y="780" width="280" height="168" rx="10" class="card"/>
+    <text x="474" y="812" class="heading">API clients</text>
+    <text x="474" y="840" class="body">fetch for login/register</text>
+    <text x="474" y="864" class="body">useAxios adds Bearer token</text>
+    <text x="474" y="888" class="body">Refresh token interceptor</text>
+    <text x="474" y="912" class="body">VITE_DOMAIN_BACKEND base URL</text>
+  </g>
+
+  <g id="backend">
+    <rect x="846" y="216" width="328" height="98" rx="10" class="card"/>
+    <text x="874" y="248" class="heading">URL routing layer</text>
+    <text x="874" y="276" class="body">backend/urls.py includes app routers</text>
+    <text x="874" y="296" class="tiny">/accounts /categories /orders /blogs /chatbot /admin</text>
+
+    <rect x="846" y="350" width="328" height="124" rx="10" class="card"/>
+    <text x="874" y="382" class="heading">Security and middleware</text>
+    <text x="874" y="410" class="body">CORS for Vite dev server</text>
+    <text x="874" y="434" class="body">DRF SimpleJWT authentication</text>
+    <text x="874" y="458" class="body">IsAuthenticated + IsStaffUser guards</text>
+
+    <rect x="846" y="510" width="154" height="126" rx="10" class="card-soft"/>
+    <text x="866" y="540" class="small-heading">accounts</text>
+    <text x="866" y="564" class="body">Token, register</text>
+    <text x="866" y="586" class="body">Profile PATCH</text>
+    <text x="866" y="608" class="body">Staff checks</text>
+
+    <rect x="1020" y="510" width="154" height="126" rx="10" class="card-soft"/>
+    <text x="1040" y="540" class="small-heading">categories</text>
+    <text x="1040" y="564" class="body">Products CRUD</text>
+    <text x="1040" y="586" class="body">Like, colors</text>
+    <text x="1040" y="608" class="body">CLIP find-car</text>
+
+    <rect x="846" y="670" width="154" height="146" rx="10" class="card-soft"/>
+    <text x="866" y="700" class="small-heading">orders</text>
+    <text x="866" y="724" class="body">Checkout flow</text>
+    <text x="866" y="746" class="body">Inventory update</text>
+    <text x="866" y="768" class="body">Admin actions</text>
+    <text x="866" y="790" class="body">Analytics APIs</text>
+
+    <rect x="1020" y="670" width="154" height="146" rx="10" class="card-soft"/>
+    <text x="1040" y="700" class="small-heading">blogs/chatbot</text>
+    <text x="1040" y="724" class="body">Blog posts API</text>
+    <text x="1040" y="746" class="body">ChatAPIView</text>
+    <text x="1040" y="768" class="body">OpenAI key from env</text>
+    <text x="1040" y="790" class="body">Media image URLs</text>
+
+    <rect x="846" y="852" width="328" height="118" rx="10" class="card"/>
+    <text x="874" y="884" class="heading">Django admin and templates</text>
+    <text x="874" y="912" class="body">Jazzmin admin theme</text>
+    <text x="874" y="936" class="body">Superuser edits models and permissions</text>
+  </g>
+
+  <g id="data">
+    <rect x="1292" y="216" width="236" height="164" rx="10" class="card"/>
+    <text x="1320" y="248" class="heading">PostgreSQL</text>
+    <text x="1320" y="276" class="body">accounts_user, profile</text>
+    <text x="1320" y="300" class="body">categories_product</text>
+    <text x="1320" y="324" class="body">order_orders, order_items</text>
+    <text x="1320" y="348" class="body">blogs_blogpost, Django tables</text>
+
+    <rect x="1292" y="420" width="236" height="146" rx="10" class="card"/>
+    <text x="1320" y="452" class="heading">Media files</text>
+    <text x="1320" y="480" class="body">frontend/public/media</text>
+    <text x="1320" y="504" class="body">car images, blog images</text>
+    <text x="1320" y="528" class="body">profile uploads</text>
+
+    <rect x="1292" y="606" width="236" height="144" rx="10" class="card"/>
+    <text x="1320" y="638" class="heading">OpenAI Chat API</text>
+    <text x="1320" y="666" class="body">/chatbot POST message</text>
+    <text x="1320" y="690" class="body">CHATBOT_model from env</text>
+    <text x="1320" y="714" class="body">Returns assistant response</text>
+
+    <rect x="1292" y="790" width="236" height="144" rx="10" class="card"/>
+    <text x="1320" y="822" class="heading">CLIP model</text>
+    <text x="1320" y="850" class="body">openai/clip-vit-base-patch32</text>
+    <text x="1320" y="874" class="body">Semantic image filtering</text>
+    <text x="1320" y="898" class="body">Used by product find-car</text>
+  </g>
+
+  <path class="line-blue" d="M322 278 C370 278, 394 278, 446 278"/>
+  <text x="347" y="260" class="tiny">browse</text>
+  <path class="line-blue" d="M322 438 C372 438, 394 294, 446 294"/>
+  <text x="350" y="405" class="tiny">client pages</text>
+  <path class="line-blue" d="M322 612 C370 612, 394 478, 446 478"/>
+  <text x="350" y="566" class="tiny">staff pages</text>
+  <path class="line" d="M322 788 C512 788, 650 884, 846 884"/>
+  <text x="390" y="816" class="tiny">Django admin login</text>
+
+  <path class="line" d="M586 366 L586 404"/>
+  <path class="line" d="M586 554 L586 592"/>
+  <path class="line" d="M586 742 L586 780"/>
+  <path class="line-blue" d="M726 864 C774 864, 792 420, 846 420"/>
+  <text x="748" y="650" class="tiny">HTTP JSON + Bearer JWT</text>
+  <path class="line-blue" d="M726 836 C776 836, 794 264, 846 264"/>
+  <text x="742" y="302" class="tiny">REST endpoints</text>
+
+  <path class="line-green" d="M1174 264 C1220 264, 1244 298, 1292 298"/>
+  <text x="1208" y="248" class="tiny">ORM queries</text>
+  <path class="line-green" d="M1000 574 C1190 574, 1194 488, 1292 488"/>
+  <text x="1128" y="536" class="tiny">image URLs</text>
+  <path class="line-dashed" d="M1174 736 C1228 736, 1244 678, 1292 678"/>
+  <text x="1195" y="706" class="tiny">chat completions</text>
+  <path class="line-dashed" d="M1174 580 C1228 580, 1244 862, 1292 862"/>
+  <text x="1190" y="812" class="tiny">find-car prompt</text>
+  <path class="line-green" d="M1000 742 C1158 742, 1192 322, 1292 322"/>
+  <text x="1082" y="480" class="tiny">orders and inventory</text>
+
+  <g transform="translate(58 1056)">
+    <text x="0" y="0" class="small-heading">Runtime notes</text>
+    <text x="0" y="28" class="body">Frontend runs on localhost:5173 during development. Backend runs on localhost:8000. PostgreSQL settings, Django secret, OpenAI key, and chatbot model are loaded from backend/.env.</text>
+    <text x="0" y="52" class="body">Order creation uses a database transaction: validate cart items, check stock, decrement Product.quantity, create OrdersItem rows, then update Orders.total_price.</text>
+  </g>
+</svg>
